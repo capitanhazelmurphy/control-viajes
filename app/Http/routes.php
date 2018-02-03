@@ -14,3 +14,19 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+/*
+|--------------------------------------------------------------------------
+| API Routes
+|--------------------------------------------------------------------------
+*/
+
+$api = app('Dingo\Api\Routing\Router');
+
+$api->version('v1', function ($api) {
+
+    /*
+     * Auth Routes
+     */
+    $api->post('auth', '\App\Http\Controllers\Api\Auth\AuthController@authenticate');
+});
