@@ -29,4 +29,18 @@ $api->version('v1', function ($api) {
      * Auth Routes
      */
     $api->post('auth', '\App\Http\Controllers\Api\Auth\AuthController@authenticate');
+
+    /*
+     * Material Routes
+     */
+    $api->group(['prefix' => 'material', 'middleware' => ['jwt.auth', 'jwt.refresh']], function($api) {
+        $api->get('/', '\App\Http\Controllers\Api\MaterialController@all');
+    });
+
+    /*
+     * Viaje Routes
+     */
+    $api->group(['prefix' => 'viaje', 'middleware' => ['jwt.auth', 'jwt.refresh']], function($api) {
+        $api->get('/', '\App\Http\Controllers\Api\ViajeController@all');
+    });
 });
